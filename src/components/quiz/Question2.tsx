@@ -1,0 +1,75 @@
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+
+interface Question2Props {
+  selectedAnswers: string[];
+  onAnswersChange: (answers: string[]) => void;
+  onNext: () => void;
+}
+
+const Question2 = ({ selectedAnswers, onAnswersChange, onNext }: Question2Props) => {
+  const options = [
+    'Catarata',
+    'Visão embaçada',
+    'Vista cansada',
+    'Dores de cabeça',
+    'Astigmatismo',
+    'Hipermetropia',
+    'Descolamento da retina',
+    'Retinopatia Diabética'
+  ];
+
+  const handleOptionChange = (option: string, checked: boolean) => {
+    if (checked) {
+      onAnswersChange([...selectedAnswers, option]);
+    } else {
+      onAnswersChange(selectedAnswers.filter(answer => answer !== option));
+    }
+  };
+
+  return (
+    <Card className="w-full shadow-xl border-0 bg-white/95 backdrop-blur-sm">
+      <CardHeader className="text-center pb-8">
+        <CardTitle className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
+          2° Pergunta - Identificação
+        </CardTitle>
+        <p className="text-xl md:text-2xl text-gray-700 mt-4 font-medium">
+          O que mais incomoda você hoje? - Múltipla escolha
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-4 pb-8">
+        {options.map((option) => (
+          <div key={option} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+            <Checkbox
+              id={option}
+              checked={selectedAnswers.includes(option)}
+              onCheckedChange={(checked) => handleOptionChange(option, checked as boolean)}
+              className="h-5 w-5"
+            />
+            <label
+              htmlFor={option}
+              className="text-lg text-gray-700 cursor-pointer flex-1"
+            >
+              {option}
+            </label>
+          </div>
+        ))}
+        
+        {selectedAnswers.length > 0 && (
+          <div className="flex justify-center pt-6">
+            <Button
+              onClick={onNext}
+              className="w-full sm:w-48 h-12 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+            >
+              Próxima
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default Question2;
