@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, Heart, BookOpen, MapPin, Phone, Mirror } from 'lucide-react';
+import { Sparkles, Heart, BookOpen, MapPin, Phone, Eye } from 'lucide-react';
 
 interface Question3Props {
   problemsSelected: string[];
@@ -14,7 +14,7 @@ const Question3 = ({ problemsSelected, onAnswer }: Question3Props) => {
     { text: 'Ler um livro ou mensagem sem esforço', icon: BookOpen },
     { text: 'Sair para caminhar sem medo de tropeçar', icon: MapPin },
     { text: 'Ligar para alguém especial e contar a novidade', icon: Phone },
-    { text: 'Me olhar no espelho e me sentir bem comigo mesmo(a)', icon: Mirror }
+    { text: 'Me olhar no espelho e me sentir bem comigo mesmo(a)', icon: Eye }
   ];
 
   const problemsText = problemsSelected.length > 0 
