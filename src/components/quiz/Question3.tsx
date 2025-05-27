@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Heart, BookOpen, MapPin, Phone, Mirror } from 'lucide-react';
 
 interface Question3Props {
   problemsSelected: string[];
@@ -10,11 +10,11 @@ interface Question3Props {
 
 const Question3 = ({ problemsSelected, onAnswer }: Question3Props) => {
   const options = [
-    'Olhar ao redor e agradecer',
-    'Ler um livro ou mensagem sem esforço',
-    'Sair para caminhar sem medo de tropeçar',
-    'Ligar para alguém especial e contar a novidade',
-    'Me olhar no espelho e me sentir bem comigo mesmo(a)'
+    { text: 'Olhar ao redor e agradecer', icon: Heart },
+    { text: 'Ler um livro ou mensagem sem esforço', icon: BookOpen },
+    { text: 'Sair para caminhar sem medo de tropeçar', icon: MapPin },
+    { text: 'Ligar para alguém especial e contar a novidade', icon: Phone },
+    { text: 'Me olhar no espelho e me sentir bem comigo mesmo(a)', icon: Mirror }
   ];
 
   const problemsText = problemsSelected.length > 0 
@@ -34,16 +34,24 @@ const Question3 = ({ problemsSelected, onAnswer }: Question3Props) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 pb-8">
-        {options.map((option) => (
-          <Button
-            key={option}
-            onClick={() => onAnswer(option)}
-            variant="outline"
-            className="w-full p-4 h-auto text-left text-gray-700 hover:bg-purple-50 hover:border-purple-300 border-gray-200 rounded-xl transition-all duration-200 hover:scale-[1.02]"
-          >
-            <span className="text-base leading-relaxed">{option}</span>
-          </Button>
-        ))}
+        {options.map((option) => {
+          const IconComponent = option.icon;
+          return (
+            <Button
+              key={option.text}
+              onClick={() => onAnswer(option.text)}
+              variant="outline"
+              className="w-full p-4 h-auto text-left text-gray-700 hover:bg-purple-50 hover:border-purple-300 border-gray-200 rounded-xl transition-all duration-200 hover:scale-[1.02]"
+            >
+              <div className="flex items-center space-x-3 w-full">
+                <div className="p-2 bg-purple-50 rounded-full">
+                  <IconComponent className="w-5 h-5 text-purple-600" />
+                </div>
+                <span className="text-base leading-relaxed">{option.text}</span>
+              </div>
+            </Button>
+          );
+        })}
       </CardContent>
     </Card>
   );

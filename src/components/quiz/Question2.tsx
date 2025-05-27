@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Eye, Zap, Brain, Target, Focus, Shield, Activity } from 'lucide-react';
 
 interface Question2Props {
   selectedAnswers: string[];
@@ -12,14 +12,14 @@ interface Question2Props {
 
 const Question2 = ({ selectedAnswers, onAnswersChange, onNext }: Question2Props) => {
   const options = [
-    'Catarata',
-    'Visão embaçada',
-    'Vista cansada',
-    'Dores de cabeça',
-    'Astigmatismo',
-    'Hipermetropia',
-    'Descolamento da retina',
-    'Retinopatia Diabética'
+    { text: 'Catarata', icon: Shield },
+    { text: 'Visão embaçada', icon: Eye },
+    { text: 'Vista cansada', icon: Zap },
+    { text: 'Dores de cabeça', icon: Brain },
+    { text: 'Astigmatismo', icon: Target },
+    { text: 'Hipermetropia', icon: Focus },
+    { text: 'Descolamento da retina', icon: AlertTriangle },
+    { text: 'Retinopatia Diabética', icon: Activity }
   ];
 
   const handleOptionChange = (option: string, checked: boolean) => {
@@ -44,22 +44,30 @@ const Question2 = ({ selectedAnswers, onAnswersChange, onNext }: Question2Props)
         <p className="text-lg text-gray-600 mt-2">Múltipla escolha</p>
       </CardHeader>
       <CardContent className="space-y-4 pb-8">
-        {options.map((option) => (
-          <div key={option} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-            <Checkbox
-              id={option}
-              checked={selectedAnswers.includes(option)}
-              onCheckedChange={(checked) => handleOptionChange(option, checked as boolean)}
-              className="h-5 w-5"
-            />
-            <label
-              htmlFor={option}
-              className="text-lg text-gray-700 cursor-pointer flex-1"
-            >
-              {option}
-            </label>
-          </div>
-        ))}
+        {options.map((option) => {
+          const IconComponent = option.icon;
+          return (
+            <div key={option.text} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+              <Checkbox
+                id={option.text}
+                checked={selectedAnswers.includes(option.text)}
+                onCheckedChange={(checked) => handleOptionChange(option.text, checked as boolean)}
+                className="h-5 w-5"
+              />
+              <div className="flex items-center space-x-3 flex-1">
+                <div className="p-2 bg-orange-50 rounded-full">
+                  <IconComponent className="w-5 h-5 text-orange-600" />
+                </div>
+                <label
+                  htmlFor={option.text}
+                  className="text-lg text-gray-700 cursor-pointer flex-1"
+                >
+                  {option.text}
+                </label>
+              </div>
+            </div>
+          );
+        })}
         
         {selectedAnswers.length > 0 && (
           <div className="flex justify-center pt-6">
