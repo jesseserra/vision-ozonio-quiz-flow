@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eye } from 'lucide-react';
 
 interface Question1Props {
   onAnswer: (answer: string) => void;
@@ -10,12 +11,14 @@ const Question1 = ({ onAnswer }: Question1Props) => {
   return (
     <Card className="w-full shadow-xl border-0 bg-white/95 backdrop-blur-sm">
       <CardHeader className="text-center pb-8">
+        <div className="flex justify-center mb-4">
+          <div className="p-4 bg-blue-100 rounded-full">
+            <Eye className="w-12 h-12 text-blue-600" />
+          </div>
+        </div>
         <CardTitle className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
-          1° Pergunta - Simples
-        </CardTitle>
-        <p className="text-xl md:text-2xl text-gray-700 mt-4 font-medium">
           Você tem algum tipo de problema de visão?
-        </p>
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col sm:flex-row gap-4 justify-center items-center pb-8">
         <Button

@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
+import { AlertTriangle } from 'lucide-react';
 
 interface Question2Props {
   selectedAnswers: string[];
@@ -32,12 +33,15 @@ const Question2 = ({ selectedAnswers, onAnswersChange, onNext }: Question2Props)
   return (
     <Card className="w-full shadow-xl border-0 bg-white/95 backdrop-blur-sm">
       <CardHeader className="text-center pb-8">
+        <div className="flex justify-center mb-4">
+          <div className="p-4 bg-orange-100 rounded-full">
+            <AlertTriangle className="w-12 h-12 text-orange-600" />
+          </div>
+        </div>
         <CardTitle className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
-          2° Pergunta - Identificação
+          O que mais incomoda você hoje?
         </CardTitle>
-        <p className="text-xl md:text-2xl text-gray-700 mt-4 font-medium">
-          O que mais incomoda você hoje? - Múltipla escolha
-        </p>
+        <p className="text-lg text-gray-600 mt-2">Múltipla escolha</p>
       </CardHeader>
       <CardContent className="space-y-4 pb-8">
         {options.map((option) => (

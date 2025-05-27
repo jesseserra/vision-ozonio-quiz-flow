@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Award, Star } from 'lucide-react';
 
 const Question4 = () => {
   const handleRedirect = () => {
@@ -10,13 +11,20 @@ const Question4 = () => {
   return (
     <Card className="w-full shadow-xl border-0 bg-white/95 backdrop-blur-sm">
       <CardHeader className="text-center pb-6">
-        <CardTitle className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
-          4° Compromisso em assistir a VSL
+        <div className="flex justify-center mb-4">
+          <div className="p-4 bg-green-100 rounded-full">
+            <Award className="w-12 h-12 text-green-600" />
+          </div>
+        </div>
+        <div className="flex justify-center items-center gap-1 mb-4">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+          ))}
+        </div>
+        <CardTitle className="text-2xl md:text-3xl font-bold text-green-600 leading-tight mb-4">
+          Parabéns, você foi qualificado a usar o Truque do Ozônio!
         </CardTitle>
         <div className="mt-6 space-y-4">
-          <p className="text-xl md:text-2xl font-bold text-green-600">
-            Parabéns, você foi qualificado a usar o Truque do Ozônio.
-          </p>
           <div className="text-left space-y-4 text-gray-700">
             <p className="text-base md:text-lg leading-relaxed">
               O renomado <strong>Dr. Felipe Martins</strong> preparou uma curta apresentação onde ele praticamente cuspiu na cara de todos os Oftalmologistas que recomendam óculos, colírios ou cirurgias. E mostrou o passo a passo de como fazer o truque do ozônio ainda hoje aí na sua casa para recuperar a sua visão.
