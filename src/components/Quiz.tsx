@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Question1 from './quiz/Question1';
 import Question2 from './quiz/Question2';
@@ -15,6 +14,11 @@ const Quiz = () => {
 
   const goToNext = () => {
     setCurrentQuestion(prev => prev + 1);
+    // Scroll to top when navigating to next question
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const updateAnswer = (questionKey: string, value: any) => {
