@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Question1 from './quiz/Question1';
 import Question2 from './quiz/Question2';
 import Question3 from './quiz/Question3';
@@ -12,13 +12,30 @@ const Quiz = () => {
     question3: ''
   });
 
+  // Effect para scroll automático quando a pergunta muda
+  useEffect(() => {
+    const scrollToTop = () => {
+      // Múltiplas tentativas para garantir que funcione em mobile
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      
+      // Fallback para dispositivos móveis
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 100);
+      
+      // Segundo fallback
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }, 200);
+    };
+
+    scrollToTop();
+  }, [currentQuestion]);
+
   const goToNext = () => {
     setCurrentQuestion(prev => prev + 1);
-    // Scroll to top when navigating to next question
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
   };
 
   const updateAnswer = (questionKey: string, value: any) => {
